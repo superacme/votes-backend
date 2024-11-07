@@ -1,0 +1,18 @@
+###
+GET http://localhost:3000/setup
+###
+GET http://localhost:3000/votes
+###
+POST http://localhost:3000/cast
+Content-Type: application/json
+
+{
+  "vote": "Elmer J. Fudd"
+}
+###
+POST http://localhost:3000/cast
+Content-Type: application/json
+
+{
+  "vote": "Bugs Bunny"
+}
