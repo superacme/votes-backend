@@ -14,7 +14,7 @@ app.use('*', cors({
 }));
 
 const createRoutes = () => {
-    app.get('/setup', async (req: Request, res: Response) => {
+    app.get('/api/setup', async (req: Request, res: Response) => {
         try {
             await pool.query(`
                 CREATE TABLE IF NOT EXISTS votes (
@@ -29,7 +29,7 @@ const createRoutes = () => {
         }
     });
 
-    app.get('/results', async (req: Request, res: Response) => {
+    app.get('/api/results', async (req: Request, res: Response) => {
         try {
             const { rows } = await pool.query('SELECT * FROM votes');
             res.status(200).json(rows);
@@ -39,7 +39,7 @@ const createRoutes = () => {
         }
     });
 
-    app.post('/cast', async (req: Request, res: Response) => {
+    app.post('/api/cast', async (req: Request, res: Response) => {
         try {
             const { vote } = req.body;
             await pool.query('INSERT INTO votes (choice) VALUES ($1)', [vote]);
