@@ -23,6 +23,7 @@ jobs:
         with:
           push: true
           context: .
+          dockerfile: Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/votes-backend:${{ github.sha }}
       - name: Deploy to
