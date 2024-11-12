@@ -26,10 +26,9 @@ jobs:
           dockerfile: Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/votes-backend:${{ github.sha }}
-      - name: Deploy to
-          acme.com/v1/webservices/staging.kblocks.io/default/shai-a-votes-be-webservice
+      - name: Deploy to acme.com/v1/webservices/local/default/test-be
         run: "curl -X PATCH -H \"content-type: application/json\"
-          https://staging.kblocks.io/api/resources/acme.com/v1/webservices/stag\
-          ing.kblocks.io/default/shai-a-votes-be-webservice -d
+          http://portal-backend.default.svc.cluster.local:3001/api/resources/ac\
+          me.com/v1/webservices/local/default/test-be -d
           '{\"source\":{\"fromImage\":{\"image\":\"${{ secrets.DOCKER_USERNAME
           }}/votes-backend:${{ github.sha }}\"}}}'"
